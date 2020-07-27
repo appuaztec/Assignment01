@@ -27,9 +27,24 @@ public class RegisterPage implements RegisterPageXpath {
     public void enterRegistrationDetails() throws IOException {
         driver.findElement(firstName).sendKeys("Johnny");
         LOGGER.log(Level.INFO,"LOG FROM perfromRegistration");
-        reporter.test.pass("Entered First Name",
-                MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build());
-
+        reporter.test.pass("Entered First Name");
+                MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build();
+        driver.findElement(lastName).sendKeys("Test");
+        LOGGER.log(Level.INFO,"LOG FROM perfromRegistration");
+        reporter.test.pass("Entered Last Name");
+                MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build();
+        driver.findElement(Email).sendKeys("appu_assign01@xyz.com");
+        LOGGER.log(Level.INFO,"LOG FROM perfromRegistration");
+        reporter.test.pass("Entered Email address");
+                MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build();
+        driver.findElement(Phone).sendKeys("9900112233");
+        LOGGER.log(Level.INFO,"LOG FROM perfromRegistration");
+        reporter.test.pass("Entered Phone number");
+        MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build();
+        driver.findElement(Gender).click();
+        LOGGER.log(Level.INFO,"LOG FROM perfromRegistration");
+        reporter.test.pass("Clicked on Female Gender Option");
+        MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build();
         //        driver.findElement(firstName).sendKeys("Sin");
       //  LOGGER.log(Level.INFO,"LOG FROM perfromRegistration");
     }
