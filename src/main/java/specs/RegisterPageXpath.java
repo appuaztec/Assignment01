@@ -11,7 +11,7 @@ public interface RegisterPageXpath {
     public By Email = By.xpath("//input[@type='email']");
     public By Phone = By.xpath("//input[@type='tel']");
     public By Gender = By.xpath("//input[@type='radio'][following-sibling::text()[position()=1][contains(., 'FeMale')]]");
-    //public By Country //
+    public By Country = By.xpath("//select[@id='countries']");
 
 
 }

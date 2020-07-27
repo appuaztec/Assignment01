@@ -24,7 +24,7 @@ public class TestNgHooks {
     }
 
     public void after(){
-        session.closeBrowser();
+       // session.closeBrowser();
         extentReporterInit.genReport();
     }
 }

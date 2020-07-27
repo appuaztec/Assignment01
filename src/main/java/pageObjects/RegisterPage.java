@@ -4,7 +4,10 @@ import baseInit.BaseSession;
 import baseInit.TestNgHooks;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import common.ExtentReporterInit;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import specs.RegisterPageXpath;
 
 import java.io.IOException;
@@ -24,7 +27,7 @@ public class RegisterPage implements RegisterPageXpath {
         reporter = TestNgHooks.extentReporterInit;
     }
 
-    public void enterRegistrationDetails() throws IOException {
+    public void enterRegistrationDetails() throws Exception{
         driver.findElement(firstName).sendKeys("Johnny");
         LOGGER.log(Level.INFO,"LOG FROM perfromRegistration");
         reporter.test.pass("Entered First Name");
@@ -47,6 +50,9 @@ public class RegisterPage implements RegisterPageXpath {
         MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build();
         //        driver.findElement(firstName).sendKeys("Sin");
       //  LOGGER.log(Level.INFO,"LOG FROM perfromRegistration");
+        baseSession.scrollToElement(Country);
+        Select countries =  new Select(driver.findElement(Country));
+        countries.selectByValue("India");
     }
 
     public void clickSubmit(){

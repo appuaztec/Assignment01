@@ -1,7 +1,9 @@
 package baseInit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -16,7 +18,7 @@ public class BaseSession {
     private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
     public WebDriver driver = null;
 
-    public BaseSession(Map<String,String> configurations) {
+    public BaseSession(Map<String, String> configurations) {
         openBrowser(configurations);
         waitForPageToLoad();
     }
@@ -58,5 +60,11 @@ public class BaseSession {
 
     public void closeBrowser() {
         driver.quit();
+    }
+
+    public void scrollToElement(By prXpath) throws Exception {
+        WebElement element = driver.findElement(prXpath);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        Thread.sleep(500);
     }
 }

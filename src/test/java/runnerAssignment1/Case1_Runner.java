@@ -31,7 +31,7 @@ public class Case1_Runner {
     }
 
     @Test
-    public void caseTest1() throws IOException {
+    public void caseTest1() throws Exception {
         //Enter Details8
         registerPage.enterRegistrationDetails();
         //Click on Submit
