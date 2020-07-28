@@ -4,9 +4,12 @@ import baseInit.BaseSession;
 import baseInit.TestNgHooks;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import common.ExtentReporterInit;
+import net.bytebuddy.asm.Advice;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ISelect;
 import org.openqa.selenium.support.ui.Select;
 import specs.RegisterPageXpath;
 
@@ -53,6 +56,21 @@ public class RegisterPage implements RegisterPageXpath {
         baseSession.scrollToElement(Country);
         Select countries =  new Select(driver.findElement(Country));
         countries.selectByValue("India");
+        driver.findElement(Selectcountry).click();
+        driver.findElement(By.xpath(SelectCountry1.replace("@COUNTRY","United States of America"))).click();
+        LOGGER.log(Level.INFO,"LOG FROM perfromRegistration");
+        reporter.test.pass("Clicked India in Select country");
+        MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build();
+        Select year= new Select(driver.findElement(DOBYear));
+        year.selectByValue("1994");
+        Select month = new Select(driver.findElement(DOBmonth));
+        month.selectByValue("August");
+        Select day = new Select(driver.findElement(DOBday));
+        day.selectByValue("10");
+
+
+
+
     }
 
     public void clickSubmit(){
