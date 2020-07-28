@@ -3,9 +3,8 @@ package runnerAssignment1;
 import baseInit.BaseSession;
 import baseInit.TestNgHooks;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import pageObjects.RegisterPage;
 
 import java.util.HashMap;
@@ -18,7 +17,7 @@ public class Case1_Runner {
     BaseSession session = null;
 
 
-    @BeforeTest
+    @BeforeMethod
     public void before() throws Exception {
         Map<String, String> params = new HashMap<String, String>();
         params.put("reportFileName", "Registration");
@@ -48,8 +47,9 @@ public class Case1_Runner {
 
     }
 
-    @AfterTest
-    public void after() {
-        testNgHooks.after();
+    @AfterMethod
+    public void after(ITestResult result) {
+
+        testNgHooks.after(result);
     }
 }

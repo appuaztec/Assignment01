@@ -70,10 +70,10 @@ public class RegisterPage implements RegisterPageXpath {
             driver.findElement(
                     By.xpath(Gender.replace("@GENDER", "FeMale"))).click();
         }
+
         LOGGER.log(Level.INFO, "Selected Gender : " + gender);
         reporter.test.pass("Selected Gender : " + gender,
                 MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build());
-
         List<String> hobbiesList = new ArrayList<String>();
         hobbiesList.add("Cricket");
         hobbiesList.add("Hockey");

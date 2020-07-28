@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 public class BaseSession {
@@ -43,6 +44,7 @@ public class BaseSession {
             options.addArguments("start-maximised");
             driver = new ChromeDriver(options);
             driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             driver.get((String) configurations.get("url"));
 
         } else if ("firefox".equals(browser)) {

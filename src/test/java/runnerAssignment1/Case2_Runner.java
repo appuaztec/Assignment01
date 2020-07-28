@@ -1,9 +1,8 @@
 package runnerAssignment1;
 
 import baseInit.TestNgHooks;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import pageObjects.AlertsPage;
 
 import java.io.IOException;
@@ -15,7 +14,7 @@ public class Case2_Runner {
     TestNgHooks testNgHooks = null;
     AlertsPage alertsPage = null;
 
-    @BeforeTest
+    @BeforeMethod
     public void before() throws Exception {
         Map<String, String> params = new HashMap<String, String>();
         params.put("reportFileName", "Alerts");
@@ -33,8 +32,9 @@ public class Case2_Runner {
         alertsPage.perfromAlerts();
     }
 
-    @AfterTest
-    public void after() {
-        testNgHooks.after();
+    @AfterMethod
+    public void after(ITestResult result) {
+
+        testNgHooks.after(result);
     }
 }
