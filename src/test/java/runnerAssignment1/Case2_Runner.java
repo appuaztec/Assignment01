@@ -5,7 +5,6 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.AlertsPage;
-import pageObjects.RegisterPage;
 
 import java.io.IOException;
 import java.util.HashMap;

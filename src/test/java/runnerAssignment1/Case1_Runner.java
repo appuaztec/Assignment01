@@ -1,12 +1,13 @@
 package runnerAssignment1;
 
+import baseInit.BaseSession;
 import baseInit.TestNgHooks;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.RegisterPage;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ public class Case1_Runner {
 
     TestNgHooks testNgHooks = null;
     RegisterPage registerPage = null;
+    BaseSession session = null;
 
 
     @BeforeTest
@@ -26,6 +28,7 @@ public class Case1_Runner {
         params.put("url", "http://demo.automationtesting.in/Register.html");
         this.testNgHooks = new TestNgHooks();
         testNgHooks.before(params);
+        this.session = testNgHooks.session;
         this.registerPage = testNgHooks.registerPage;
 
     }
@@ -36,6 +39,11 @@ public class Case1_Runner {
         registerPage.enterRegistrationDetails();
         //Click on Submit
         registerPage.clickSubmit();
+        //Click on Refresh
+        // registerPage.clickRefresh();
+
+        Assert.assertTrue(session.verifyURL(10, "WebTable"),
+                "Submission Failed, Didn't navigate in 10 seconds");
 
 
     }

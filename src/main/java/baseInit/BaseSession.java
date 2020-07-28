@@ -1,6 +1,5 @@
 package baseInit;
 
-import org.apache.commons.codec.binary.Base64;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -8,11 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 public class BaseSession {
@@ -70,9 +66,23 @@ public class BaseSession {
         Thread.sleep(500);
     }
 
-    //public void dateOfBirth(By dob){
-     // WebElement element = driver.findElement(dob);
 
+    public boolean verifyURL(int seconds, String value) throws Exception {
+        boolean success = false;
+        for (int i = 1; i <= seconds; i++) {
+            if (driver.getCurrentUrl().contains(value)) {
+                success = true;
+                break;
+            } else {
+                Thread.sleep(1000);
+            }
+        }
+        return success;
+
+    }
+
+    //public void dateOfBirth(By dob){
+    // WebElement element = driver.findElement(dob);
 
 
 //    public void addText(By add) throws Exception {
@@ -81,16 +91,16 @@ public class BaseSession {
 //        js.executeScript("arguments[0].setAttribute('value',arguments[1]);",element,"#123, 2 stage, Vienna street");
 //        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
 
- //      public void passEncryptDcrypt(By password) {
- //         String str = "abcd1234";
-   //       byte[] encode = Base64.encodeBase64(str.getBytes());
-     //     System.out.println("String before encoding: " + str);
-       //   System.out.println("String after encoding : " + new String(encode));
-         // byte[] decode = Base64.decodeBase64(encode);
-          //System.out.println("String after decoding : " + new String(decode));
+    //      public void passEncryptDcrypt(By password) {
+    //         String str = "abcd1234";
+    //       byte[] encode = Base64.encodeBase64(str.getBytes());
+    //     System.out.println("String before encoding: " + str);
+    //   System.out.println("String after encoding : " + new String(encode));
+    // byte[] decode = Base64.decodeBase64(encode);
+    //System.out.println("String after decoding : " + new String(decode));
 
 
-      }
+}
 
 
 

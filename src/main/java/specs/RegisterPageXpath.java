@@ -2,8 +2,6 @@ package specs;
 
 import org.openqa.selenium.By;
 
-import java.sql.Driver;
-
 public interface RegisterPageXpath {
 
     public By firstName = By.xpath("//input[contains(@placeholder,'First Name')]");
@@ -11,10 +9,11 @@ public interface RegisterPageXpath {
     public By Address = By.xpath("//textarea[@ng-model='Adress']");
     public By Email = By.xpath("//input[@type='email']");
     public By Phone = By.xpath("//input[@type='tel']");
-    public By Gender = By.xpath("//input[@type='radio'][following-sibling::text()[position()=1][contains(., 'FeMale')]]");
+    public String Gender = "//input[@type='radio' and @value='@GENDER']";
     public By Hobbies = By.xpath("//input[@type='checkbox']");
     public By Country = By.xpath("//select[@id='countries']");
     public By Languages = By.xpath("//div[@id='msdd']");
+    public String Languages1 = "//li/a[contains(text(),'@LANGUAGE')]";
     public By Skills = By.xpath("//select[@id='Skills']");
     public By Selectcountry = By.xpath("//span[@role='combobox']");
     public String SelectCountry1 = "//li[text()='@COUNTRY']";
@@ -24,8 +23,7 @@ public interface RegisterPageXpath {
     public By password = By.xpath("//input[@id='firstpassword']");
     public By confimpwd = By.xpath("//input[@id='secondpassword']");
     public By submit = By.xpath("//button[@id='submitbtn']");
-
-
+    public By refresh = By.xpath("//button[@id='Button1']");
 
 
 }
