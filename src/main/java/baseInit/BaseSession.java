@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -19,18 +21,18 @@ public class BaseSession {
 
     public BaseSession(Map<String, String> configurations) {
         openBrowser(configurations);
-        waitForPageToLoad();
+        waitForPageToLoad(this.driver);
     }
 
-    public void waitForPageToLoad() {
-//        ExpectedCondition<Boolean> expectation = new
-//                ExpectedCondition<Boolean>() {
-//                    public Boolean apply(WebDriver driver) {
-//                        return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
-//                    }
-//                };
-//        WebDriverWait wait = new WebDriverWait(driver, 60);
-//        Object until = wait.until(expectation);
+    public void waitForPageToLoad(WebDriver driver) {
+        ExpectedCondition<Boolean> expectation = new
+                ExpectedCondition<Boolean>() {
+                    public Boolean apply(WebDriver driver) {
+                        return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+                    }
+                };
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+        Object until = wait.until(expectation);
     }
 
     public WebDriver openBrowser(Map<String, String> configurations) {

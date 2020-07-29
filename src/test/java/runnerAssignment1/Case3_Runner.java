@@ -32,18 +32,20 @@ public class Case3_Runner {
 
     }
 
-    @Test
+    @Test(enabled = false)
 
     public void caseTest3() throws Exception {
 
         WindowsPage.windowTabbed();
     }
-
     @Test
 
     public void caseTest4() throws Exception {
-        WindowsPage.windowTabbed();
+
+        WindowsPage.separateWindow();
     }
+
+
 
     @AfterMethod
     public void after(ITestResult result) {

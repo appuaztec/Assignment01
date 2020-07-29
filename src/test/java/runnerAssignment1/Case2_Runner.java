@@ -28,8 +28,9 @@ public class Case2_Runner {
     }
 
     @Test
-    public void caseTest1() throws IOException {
-        alertsPage.perfromAlerts();
+    public void caseTest1() throws Exception {
+        alertsPage.performAlerts();
+        //alertsPage.performAlertsOandC();
     }
 
     @AfterMethod
