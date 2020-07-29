@@ -5,8 +5,8 @@
         <packages>
             <package name="runnerAssignment1"/>
         </packages>
-        <!--    <classes>-->
-        <!--      <class name="runnerAssignment1.Case1_Runner"/>-->
-        <!--    </classes>-->
+<!--            <classes>-->
+<!--              <class name="runnerAssignment1.Case1_Runner"/>-->
+<!--            </classes>-->
     </test> <!-- Aparupa_Assignment1 -->
 </suite> <!-- Default Suite -->

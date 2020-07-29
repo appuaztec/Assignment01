@@ -3,6 +3,7 @@ package baseInit;
 import common.ExtentReporterInit;
 import org.testng.ITestResult;
 import pageObjects.AlertsPage;
+import pageObjects.FramesPage;
 import pageObjects.RegisterPage;
 import pageObjects.WindowsPage;
 
@@ -15,6 +16,7 @@ public class TestNgHooks {
     public RegisterPage registerPage = null;
     public AlertsPage alertsPage = null;
     public WindowsPage WindowsPage = null;
+    public FramesPage framesPage = null;
 
     public void before(Map<String, String> params) throws Exception {
         extentReporterInit = new ExtentReporterInit(params.get("reportFileName"),
@@ -23,6 +25,7 @@ public class TestNgHooks {
         this.registerPage = new RegisterPage(session);
         this.alertsPage = new AlertsPage(session);
         this.WindowsPage = new WindowsPage(session);
+        this.framesPage = new FramesPage(session);
     }
 
     public void after(ITestResult result) {

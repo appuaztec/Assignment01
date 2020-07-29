@@ -3,54 +3,57 @@ package runnerAssignment1;
 import baseInit.BaseSession;
 import baseInit.TestNgHooks;
 import org.testng.ITestResult;
-import org.testng.Reporter;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import pageObjects.FramesPage;
 import pageObjects.WindowsPage;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Case3_Runner {
+public class Case4_Runner {
 
     TestNgHooks testNgHooks = null;
-    WindowsPage WindowsPage = null;
+    FramesPage framesPage = null;
     BaseSession session = null;
 
 
     @BeforeMethod
     public void before() throws Exception {
         Map<String, String> params = new HashMap<String, String>();
-        params.put("reportFileName", "Window Switch");
-        params.put("reportTestName", "Window Switch");
+        params.put("reportFileName", "Frames");
+        params.put("reportTestName", "Frames");
         params.put("reportTestDesc", "");
         params.put("browser", "chrome");
-        params.put("url", "http://demo.automationtesting.in/Windows.html");
+        params.put("url", "http://demo.automationtesting.in/Frames.html");
         this.testNgHooks = new TestNgHooks();
         testNgHooks.before(params);
         this.session = testNgHooks.session;
-        this.WindowsPage = testNgHooks.WindowsPage;
+        this.framesPage = testNgHooks.framesPage;
 
     }
 
-    @Test
+    @Test(enabled = false)
 
     public void caseTest3() throws Exception {
 
-        WindowsPage.windowTabbed();
+        framesPage.frameValidation();
+
     }
-    @Test(enabled = false)
+
+    @Test(enabled = true)
 
     public void caseTest4() throws Exception {
 
-        WindowsPage.separateWindow();
+        framesPage.frameValidationMultiple();
     }
-
 
 
     @AfterMethod
     public void after(ITestResult result) {
 
-        testNgHooks.after(result);
+       // testNgHooks.after(result);
     }
 
 }
