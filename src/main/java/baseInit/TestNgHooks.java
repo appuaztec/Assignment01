@@ -2,10 +2,7 @@ package baseInit;
 
 import common.ExtentReporterInit;
 import org.testng.ITestResult;
-import pageObjects.AlertsPage;
-import pageObjects.FramesPage;
-import pageObjects.RegisterPage;
-import pageObjects.WindowsPage;
+import pageObjects.*;
 
 import java.util.Map;
 
@@ -15,8 +12,10 @@ public class TestNgHooks {
     public BaseSession session = null;
     public RegisterPage registerPage = null;
     public AlertsPage alertsPage = null;
-    public WindowsPage WindowsPage = null;
+    public WindowsPage windowsPage = null;
     public FramesPage framesPage = null;
+    public DatePickerPage datePickerPage = null;
+    public SelectablePage selectablePage = null;
 
     public void before(Map<String, String> params) throws Exception {
         extentReporterInit = new ExtentReporterInit(params.get("reportFileName"),
@@ -24,8 +23,10 @@ public class TestNgHooks {
         this.session = new BaseSession(params);
         this.registerPage = new RegisterPage(session);
         this.alertsPage = new AlertsPage(session);
-        this.WindowsPage = new WindowsPage(session);
+        this.windowsPage = new WindowsPage(session);
         this.framesPage = new FramesPage(session);
+        this.datePickerPage = new DatePickerPage(session);
+        this.selectablePage = new SelectablePage(session);
     }
 
     public void after(ITestResult result) {

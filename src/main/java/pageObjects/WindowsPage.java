@@ -8,19 +8,18 @@ import common.ExtentReporterInit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Logger;
 
 public class WindowsPage {
+    public static WebDriver driver = null;
     private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
     public BaseSession baseSession = null;
-    public static WebDriver driver = null;
     public ExtentReporterInit reporter = null;
 
 
@@ -78,51 +77,75 @@ public class WindowsPage {
                 MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build());
 
 
+    }
+
+    public void separateWindow() throws Exception {
+
+        driver.findElement(By.xpath("//a[contains(text(),'Open New Seperate Windows')]")).click();
+
+        driver.findElement(By.xpath("//div[@id='Seperate' and contains(@class,'active')]/button")).click();
+
+        Set<String> newSeperate = driver.getWindowHandles();
+        Iterator<String> I2 = newSeperate.iterator();
+
+        String mainWindow = I2.next();
+        String seperateWindow = I2.next();
+
+        driver.switchTo().window(seperateWindow);
+        baseSession.waitForPageToLoad(driver);
+
+        String title1 = driver.getTitle();
+        System.out.println("Title of the  seperate window = " + title1);
+
+        String tabURL1 = driver.getCurrentUrl();
+        System.out.println("tabURL = " + tabURL1);
+
+
+        reporter.test.pass("Seperate  Window : " + title1,
+                MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build());
+
+        driver.switchTo().window(mainWindow);
+        System.out.println("Main window title = " + driver.getTitle());
+        reporter.test.pass("URL Validated",
+                MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build());
 
 
     }
-public void separateWindow() throws Exception {
 
-    String buttonCheck = "";
+    public void separateMultipleWindow() throws Exception {
 
-    //div[@id='Tabbed' and contains(@class,'active')]/a/button
+        driver.findElement(By.xpath("//a[contains(text(),'Open Seperate Multiple Windows')]")).click();
 
-    WebElement newSeperateWindow = driver.findElement(By.xpath(" //div[@id='Seperate' and contains(@class,'active')]"));
-    buttonCheck = newSeperateWindow.getAttribute("href");
-    //reporter.test.pass("Open Window ",
-    //MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build());
-    driver.findElement(By.xpath(" //div[@id='Seperate' and contains(@class,'active')]/a/button")).click();
+        driver.findElement(By.xpath("//div[@id='Multiple' and contains(@class,'active')]/button")).click();
 
-    Set<String> newSeperate = driver.getWindowHandles();
-    Iterator<String> I2 = newSeperate.iterator();
+        Set<String> newSeperate = driver.getWindowHandles();
+        String mainWindow = newSeperate.iterator().next();
+        for (String windows: newSeperate) {
+            if(mainWindow.equals(windows)){
+                continue;
+            }
+            System.out.println("Window ");
+            driver.switchTo().window(windows);
+            baseSession.waitForPageToLoad(driver);
 
-    String mainWindow = I2.next();
-    String seperateWindow = I2.next();
+            String title1 = driver.getTitle();
+            System.out.println("Title of the  seperate window = " + title1);
 
-    driver.switchTo().window(seperateWindow);
-    baseSession.waitForPageToLoad(driver);
-
-    String title1 = driver.getTitle();
-    System.out.println("Title of the  seperate window = " + title1);
-
-    String tabURL1 = driver.getCurrentUrl();
-    System.out.println("tabURL = " + tabURL1);
-
-    URI u2 = new URI(tabURL1);
-    URI u3 = new URI(buttonCheck);
-
-    reporter.test.pass("Seperate  Window : " + title1,
-            MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build());
-    Assert.assertTrue(
-            u2.getHost().equalsIgnoreCase(
-                    u3.getHost()),
-            "WRONG HOST OPENED");
-    driver.switchTo().window(mainWindow);
-    System.out.println("Main window title = " + driver.getTitle());
-    reporter.test.pass("URL " + u2.getHost() + "Validated",
-            MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build());
+            String tabURL1 = driver.getCurrentUrl();
+            System.out.println("tabURL = " + tabURL1);
 
 
+            reporter.test.pass("Seperate  Window : " + title1,
+                    MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build());
+
+            driver.switchTo().window(mainWindow);
+            System.out.println("Main window title = " + driver.getTitle());
+            reporter.test.pass("URL Validated",
+                    MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build());
+
+        }
+
+
+    }
 }
-    }
 

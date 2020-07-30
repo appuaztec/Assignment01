@@ -3,7 +3,6 @@ package runnerAssignment1;
 import baseInit.BaseSession;
 import baseInit.TestNgHooks;
 import org.testng.ITestResult;
-import org.testng.Reporter;
 import org.testng.annotations.*;
 import pageObjects.WindowsPage;
 
@@ -28,11 +27,11 @@ public class Case3_Runner {
         this.testNgHooks = new TestNgHooks();
         testNgHooks.before(params);
         this.session = testNgHooks.session;
-        this.WindowsPage = testNgHooks.WindowsPage;
+        this.WindowsPage = testNgHooks.windowsPage;
 
     }
 
-    @Test
+    @Test(enabled = false)
 
     public void caseTest3() throws Exception {
 
@@ -45,6 +44,12 @@ public class Case3_Runner {
         WindowsPage.separateWindow();
     }
 
+    @Test
+
+    public void caseTest41() throws Exception {
+
+        WindowsPage.separateMultipleWindow();
+    }
 
 
     @AfterMethod

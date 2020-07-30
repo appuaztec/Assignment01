@@ -10,7 +10,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import specs.RegisterPageXpath;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,8 +30,8 @@ public class RegisterPage implements RegisterPageXpath {
 
     public void enterRegistrationDetails() throws Exception {
 
-        String strFirstName = "Johnny";
-        String strLastName = "Deer";
+        String strFirstName = RandomDataGenerator.getRandomWord(8);
+        String strLastName = RandomDataGenerator.getRandomWord(4);
 
         driver.findElement(firstName).sendKeys(strFirstName);
         LOGGER.log(Level.INFO, "Entered First Name : " + strFirstName);
@@ -50,7 +49,7 @@ public class RegisterPage implements RegisterPageXpath {
         reporter.test.pass("Entered Address " + strAddress,
                 MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build());
 
-        String emailID = "john_deer" + RandomDataGenerator.getRandomNum(1, 99) + "@email.com";
+        String emailID = strFirstName+"_"+strLastName + RandomDataGenerator.getRandomNum(1, 99) + "@email.com";
         driver.findElement(Email).sendKeys(emailID);
         LOGGER.log(Level.INFO, "Entered Email address " + emailID);
         reporter.test.pass("Entered Email address " + emailID,
