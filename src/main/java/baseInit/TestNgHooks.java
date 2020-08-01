@@ -16,8 +16,17 @@ public class TestNgHooks {
     public FramesPage framesPage = null;
     public DatePickerPage datePickerPage = null;
     public SelectablePage selectablePage = null;
+    boolean browserOpened = true;
+
 
     public void before(Map<String, String> params) throws Exception {
+        if(params.get("browser").equalsIgnoreCase("no")
+         && params.get("report").equalsIgnoreCase("yes")){
+            extentReporterInit = new ExtentReporterInit(params.get("reportFileName"),
+                    params.get("reportTestName"), params.get("reportTestDesc"));
+            browserOpened = false;
+            return;
+        }
         extentReporterInit = new ExtentReporterInit(params.get("reportFileName"),
                 params.get("reportTestName"), params.get("reportTestDesc"));
         this.session = new BaseSession(params);
@@ -43,7 +52,9 @@ public class TestNgHooks {
             extentReporterInit.test.skip("skip");
             System.out.println("Skiped***********");
         }
-        session.closeBrowser();
+        if(!browserOpened){
+            //session.closeBrowser();
+        }
         extentReporterInit.genReport();
     }
 }
