@@ -16,6 +16,7 @@ public class TestNgHooks {
     public FramesPage framesPage = null;
     public DatePickerPage datePickerPage = null;
     public SelectablePage selectablePage = null;
+    public GilletteLogin GilletteLogin = null;
     boolean browserOpened = true;
 
 
@@ -36,6 +37,7 @@ public class TestNgHooks {
         this.framesPage = new FramesPage(session);
         this.datePickerPage = new DatePickerPage(session);
         this.selectablePage = new SelectablePage(session);
+        this.GilletteLogin = new GilletteLogin(session);
     }
 
     public void after(ITestResult result) {

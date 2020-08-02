@@ -1,70 +1,49 @@
 package runnerAssignment1;
 
-import baseInit.BaseSession;
 import baseInit.TestNgHooks;
 import common.PropertyReader;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageObjects.DatePickerPage;
+import pageObjects.GilletteLogin;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Case5_Runner {
-
+public class Case7_Runner {
     TestNgHooks testNgHooks = null;
-    DatePickerPage DatePickerPage = null;
-    BaseSession session = null;
+    GilletteLogin gilletteLogin = null;
     PropertyReader propertyReader =
             new PropertyReader(
                     System.getProperty("user.dir") +
                             "\\src\\main\\resources\\properties\\Assignment1.properties");
 
 
-
     @BeforeMethod
     public void before() throws Exception {
         Map<String, String> params = new HashMap<String, String>();
-        params.put("reportFileName", "DatePicker");
-        params.put("reportTestName", "DatePicker");
+        params.put("reportFileName", "Gillette Login");
+        params.put("reportTestName", "Gillette Login");
         params.put("reportTestDesc", "");
         params.put("browser", "chrome");
-        params.put("url", propertyReader.readProperty("case5_url"));
+        params.put("url", propertyReader.readProperty("case7_url"));
         this.testNgHooks = new TestNgHooks();
         testNgHooks.before(params);
-        this.session = testNgHooks.session;
-        this.DatePickerPage = testNgHooks.datePickerPage;
-
+        this.gilletteLogin = testNgHooks.GilletteLogin;
     }
 
-    @Test(enabled = true)
+    @Test
     public void caseTest1() throws Exception {
-        //Enter Details
-        String dateSelect = "24/10/2019";
-        DatePickerPage.DatePickDisabled(dateSelect);
-        //Click on Submit
-    }
-
-    @Test(enabled = true)
-    public void caseTest2() throws Exception {
-        //Enter Details
-        String dateSelect = "24/10/2020";
-        DatePickerPage.DatePickEnabled(dateSelect);
-        //Click on Submit
+        gilletteLogin.GilletteIndia();
+        //alertsPage.performAlertsOandC();
     }
 
     @AfterMethod
     public void after(ITestResult result) {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         testNgHooks.after(result);
     }
 }
-
 
 

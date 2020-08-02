@@ -2,6 +2,7 @@ package runnerAssignment1;
 
 import baseInit.BaseSession;
 import baseInit.TestNgHooks;
+import common.PropertyReader;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -15,6 +16,11 @@ public class Case1_Runner {
     TestNgHooks testNgHooks = null;
     RegisterPage registerPage = null;
     BaseSession session = null;
+    PropertyReader propertyReader =
+            new PropertyReader(
+                    System.getProperty("user.dir") +
+                            "\\src\\main\\resources\\properties\\Assignment1.properties");
+
 
 
     @BeforeMethod
@@ -24,7 +30,7 @@ public class Case1_Runner {
         params.put("reportTestName", "Registration");
         params.put("reportTestDesc", "");
         params.put("browser", "chrome");
-        params.put("url", "http://demo.automationtesting.in/Register.html");
+        params.put("url", propertyReader.readProperty("case1_url"));
         this.testNgHooks = new TestNgHooks();
         testNgHooks.before(params);
         this.session = testNgHooks.session;

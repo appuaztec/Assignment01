@@ -2,6 +2,7 @@ package runnerAssignment1;
 
 import baseInit.BaseSession;
 import baseInit.TestNgHooks;
+import common.PropertyReader;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pageObjects.WindowsPage;
@@ -14,7 +15,10 @@ public class Case3_Runner {
     TestNgHooks testNgHooks = null;
     WindowsPage WindowsPage = null;
     BaseSession session = null;
-
+    PropertyReader propertyReader =
+            new PropertyReader(
+                    System.getProperty("user.dir") +
+                            "\\src\\main\\resources\\properties\\Assignment1.properties");
 
     @BeforeMethod
     public void before() throws Exception {
@@ -23,7 +27,7 @@ public class Case3_Runner {
         params.put("reportTestName", "Window Switch");
         params.put("reportTestDesc", "");
         params.put("browser", "chrome");
-        params.put("url", "http://demo.automationtesting.in/Windows.html");
+        params.put("url", propertyReader.readProperty("case3_url"));
         this.testNgHooks = new TestNgHooks();
         testNgHooks.before(params);
         this.session = testNgHooks.session;
@@ -31,13 +35,13 @@ public class Case3_Runner {
 
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
 
     public void caseTest3() throws Exception {
 
         WindowsPage.windowTabbed();
     }
-    @Test(enabled = false)
+    @Test(enabled = true)
 
     public void caseTest4() throws Exception {
 

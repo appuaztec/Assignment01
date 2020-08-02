@@ -1,6 +1,7 @@
 package runnerAssignment1;
 
 import baseInit.TestNgHooks;
+import common.PropertyReader;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -14,6 +15,11 @@ public class Case2_Runner {
 
     TestNgHooks testNgHooks = null;
     AlertsPage alertsPage = null;
+    PropertyReader propertyReader =
+            new PropertyReader(
+                    System.getProperty("user.dir") +
+                            "\\src\\main\\resources\\properties\\Assignment1.properties");
+
 
     @BeforeMethod
     public void before() throws Exception {
@@ -22,7 +28,7 @@ public class Case2_Runner {
         params.put("reportTestName", "Alerts");
         params.put("reportTestDesc", "");
         params.put("browser", "chrome");
-        params.put("url", "http://demo.automationtesting.in/Alerts.html");
+        params.put("url", propertyReader.readProperty("case2_url"));
         this.testNgHooks = new TestNgHooks();
         testNgHooks.before(params);
         this.alertsPage = testNgHooks.alertsPage;

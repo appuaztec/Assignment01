@@ -9,8 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-
-import java.io.IOException;
 import java.net.URI;
 import java.util.Iterator;
 import java.util.Set;
@@ -120,8 +118,8 @@ public class WindowsPage {
 
         Set<String> newSeperate = driver.getWindowHandles();
         String mainWindow = newSeperate.iterator().next();
-        for (String windows: newSeperate) {
-            if(mainWindow.equals(windows)){
+        for (String windows : newSeperate) {
+            if (mainWindow.equals(windows)) {
                 continue;
             }
             System.out.println("Window ");
@@ -133,7 +131,6 @@ public class WindowsPage {
 
             String tabURL1 = driver.getCurrentUrl();
             System.out.println("tabURL = " + tabURL1);
-
 
             reporter.test.pass("Seperate  Window : " + title1,
                     MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build());

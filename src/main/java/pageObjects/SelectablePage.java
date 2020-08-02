@@ -2,6 +2,7 @@ package pageObjects;
 
 import baseInit.BaseSession;
 import baseInit.TestNgHooks;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import common.ExtentReporterInit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -12,6 +13,7 @@ import org.testng.Assert;
 import specs.SelectableXpath;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SelectablePage implements SelectableXpath {
@@ -37,9 +39,13 @@ public class SelectablePage implements SelectableXpath {
         Thread.sleep(3000);
         String val1 = selectedList.replace("@LISTDATA", s);
         String valClass = driver.findElement(By.xpath(val1)).getAttribute("class");
-
+        reporter.test.pass("Default Selactable List : ",
+                MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build());
         Assert.assertTrue(valClass.contains("selected"), "Value is not selected");
+        LOGGER.log(Level.INFO, "Default Selectable List : ");
+
     }
+
 
     public void serialList(List<String> listData) throws Exception {
 
@@ -66,6 +72,10 @@ public class SelectablePage implements SelectableXpath {
             String valClass = driver.findElement(By.xpath(val1)).getAttribute("class");
 
             Assert.assertTrue(valClass.contains("selected"), "Value " + s + " is not selected");
+            LOGGER.log(Level.INFO, "Serialize Selectable List : ");
+            reporter.test.pass("Serialize Selctable List : ",
+                    MediaEntityBuilder.createScreenCaptureFromBase64String(reporter.getScreenshotExtent(driver)).build());
+
         }
 
     }

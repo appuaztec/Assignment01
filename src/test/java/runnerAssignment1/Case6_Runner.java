@@ -29,8 +29,8 @@ public class Case6_Runner {
     @BeforeMethod
     public void before() throws Exception {
         Map<String, String> params = new HashMap<String, String>();
-        params.put("reportFileName", "DatePicker");
-        params.put("reportTestName", "DatePicker");
+        params.put("reportFileName", "Selectable");
+        params.put("reportTestName", "Selectable");
         params.put("reportTestDesc", "");
         params.put("browser", "chrome");
         params.put("url", propertyReader.readProperty("case6_url"));
@@ -41,7 +41,7 @@ public class Case6_Runner {
 
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void defaultSelect() throws Exception {
         String s = "Sakinalium - Extent Reports";
         selectablePage.defaultList(s);
